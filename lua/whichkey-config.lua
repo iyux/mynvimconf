@@ -10,19 +10,8 @@ wk.setup({
 wk.register({
   -- search
   ["<leader>"] = {
-    a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action"},
-    b = { "<cmd>Telescope buffers<cr>", "search buffers" },
-    c = { "<cmd>Telescope colorscheme<cr>", "search colorscheme" },
-    d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
-    e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
-    f = { "<cmd>Telescope find_files<cr>", "search File" },
-    g = { "<cmd>Telescope live_grep<cr>", "live grep" },
-    G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
-    i = { "<cmd>Octo issue list<cr>", "list github issue" },
     m = { "<cmd>Telescope keymaps<cr>", "list keymaps" },
-    o = { "<cmd>call Outline()<cr>", "search symbols in file" },
-    s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<CR>",  "jump to buffer 1"},
@@ -35,20 +24,50 @@ wk.register({
     ["8"] = { "<cmd>BufferLineGoToBuffer 8<CR>",  "jump to buffer 8"},
     ["9"] = { "<cmd>BufferLineGoToBuffer 9<CR>",  "jump to buffer 9"},
     ["0"] = { "<cmd>BufferLineGoToBuffer 10<CR>", "jump to buffer 10"},
-  },
 
-  -- " 使用 space [number] 切换到第 [number] 个 window
-  ['<space>'] = {
-    ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1"},
-    ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2"},
-    ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3"},
-    ["4"] = { "<cmd>4wincmd  w <cr>", "jump to window 4"},
-    ["5"] = { "<cmd>5wincmd  w <cr>", "jump to window 5"},
-    ["6"] = { "<cmd>6wincmd  w <cr>", "jump to window 6"},
-    ["7"] = { "<cmd>7wincmd  w <cr>", "jump to window 7"},
-    ["8"] = { "<cmd>8wincmd  w <cr>", "jump to window 8"},
-    ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9"},
-    ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0"},
+    -- 窗口相关
+    w = {name="+windns",
+      ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1"},
+      ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2"},
+      ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3"},
+      ["4"] = { "<cmd>4wincmd  w <cr>", "jump to window 4"},
+      ["5"] = { "<cmd>5wincmd  w <cr>", "jump to window 5"},
+      ["6"] = { "<cmd>6wincmd  w <cr>", "jump to window 6"},
+      ["7"] = { "<cmd>7wincmd  w <cr>", "jump to window 7"},
+      ["8"] = { "<cmd>8wincmd  w <cr>", "jump to window 8"},
+      ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9"},
+      ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0"},
+      g = { "<cmd>vsp<cr>", "vertical split window"},
+      v = { "<cmd>sp<cr>", "horizontal split window"},
+      m = { "<cmd>only<cr>", "maximize current window"},
+      u = { "<cmd>UndotreeToggle<cr>", "undo tree"},
+      n = {":Vista!!<cr>", "toggle vista navigator"},
+      ["<"] = {"<cmd>vertical resize -3<cr>", "vertical resize -3"},
+      [">"] = {"<cmd>vertical resize +3<cr>", "vertical resize +3"},
+      ["-"] = {"<cmd>resize -3<cr>", "resize -3"},
+      ["+"] = {"<cmd>resize +3<cr>", "resize +3"},
+
+      },
+
+    -- 搜索相关
+    s = {name = "+search",
+       a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action"},
+       b = { "<cmd>Telescope buffers<cr>", "search buffers" },
+       c = { "<cmd>Telescope colorscheme<cr>", "search colorscheme" },
+       d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
+       e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
+       f = { "<cmd>Telescope find_files<cr>", "search File" },
+       g = { "<cmd>Telescope live_grep<cr>", "live grep" },
+       G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
+       o = { "<cmd>call Outline()<cr>", "search symbols in file" },
+       s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
+       P = {"<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
+         "search cursor word in project"},
+       p = {"<cmd>lua require('spectre').open()<CR>", "search in project"}
+    },
+
+    S = { ":lua require('spectre').open_visual()<cr>", "search"},
+
 
     ['a'] = {
       name = "+misc",
@@ -81,12 +100,7 @@ wk.register({
       L = { "<cmd>FloatermNew tig<cr>", "log of project"},
       p = { "<cmd>Git push<cr>", "git push"},
       a = { "<cmd>Git add -A<cr>", "git stage all changes"},
-    },
-    ["s"] = {
-      name = "+search",
-      P = {"<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
-        "search cursor word in project"},
-      p = {"<cmd>lua require('spectre').open()<CR>", "search in project"}
+      i = { "<cmd>Octo issue list<cr>", "list github issue" },
     },
     ["t"] = {
       name = "+toggle",
@@ -94,7 +108,7 @@ wk.register({
       ["s"] = {"<cmd>:set spell!<cr>", "spell check"},
       ["w"] = {"<cmd>:set wrap!<cr>", "wrap line"},
       ["h"] = {"<cmd>noh<cr>", "Stop the highlighting"},
-      ["m"] = {"<cmd>TableModeToggle<cr>", "markdown table edit mode"},
+      ["M"] = {"<cmd>TableModeToggle<cr>", "markdown table edit mode"},
     },
     ["f"] = {
       name = "+file",
@@ -103,24 +117,8 @@ wk.register({
       t = {"<cmd>NvimTreeToggle<cr>", "toggle file tree"}
     },
   },
+
+
   q = { "<cmd>q<cr>", "close window"},
-  ["c"] = {
-    name = "+window",
-    g = { "<cmd>vsp<cr>", "vertical split window"},
-    v = { "<cmd>sp<cr>", "horizontal split window"},
-    m = { "<cmd>only<cr>", "maximize current window"},
-    u = { "<cmd>UndotreeToggle<cr>", "maximize current window"},
-    n = {":Vista!!<cr>", "toggle vista navigator"}
-  },
   ["<tab>"] = {":wincmd w<cr>", "switch window"},
 })
-
-wk.register({
-  ["<space>"] = {
-    ["l"] = {
-      ["c"] = { ":Commentary<cr>", "comment code"},
-    },
-    ["s"] = { ":lua require('spectre').open_visual()<cr>", "search"}
-  },
-  q = { "<cmd>q<cr>", "close window"},
-}, { mode = "v"})

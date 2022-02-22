@@ -33,7 +33,7 @@ autocmd FocusLost,BufLeave * silent! update
 " 在 terminal 中也是使用 esc 来进入 normal 模式
 tnoremap  <Esc>  <C-\><C-n>
 " 映射 leader 键为 ,
-let g:mapleader = ','
+let g:mapleader = "\<space>"
 " 设置主题
 colorscheme tokyonight
 
@@ -122,7 +122,11 @@ augroup end
 " 访问系统剪切板
 map <leader>y "+y
 map <leader>p "+p
-map <leader>d "+d
+" map <leader>d "+d
+
+nmap <F8> <leader>ft
+nmap <F7> <leader>wn  
+
 
 let g:git_messenger_no_default_mappings = v:true
 
