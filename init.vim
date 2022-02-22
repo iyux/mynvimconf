@@ -126,6 +126,11 @@ map <leader>p "+p
 
 nmap <F8> <leader>ft
 nmap <F7> <leader>wn  
+nmap <F3> :Commentary<CR>
+imap <F3> <ESC>:Commentary<CR> o
+
+
+vmap <F3> :Commentary<CR>
 
 
 let g:git_messenger_no_default_mappings = v:true
@@ -147,7 +152,7 @@ endfor
 " 加载 lua 配置
 lua require 'plugins'
 lua require 'buffer-config'
-lua require 'orgmode-config'
+" lua require 'orgmode-config'
 lua require 'telescope-config'
 lua require 'tree-config'
 lua require 'whichkey-config'

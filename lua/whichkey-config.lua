@@ -83,7 +83,7 @@ wk.register({
     },
     ['l'] = {
       name = "+language",
-      c = { "<cmd>Commentary<cr>", "comment code"},
+      -- c = { "<cmd>Commentary<cr>", "comment code"},
       r = { "<cmd>call QuickRun()<cr>", "run code"},
       f = { "<Cmd>call CocAction('format')<CR>", "format current buffer"},
       n = { "<Plug>(coc-rename)", "rename"},
@@ -122,3 +122,12 @@ wk.register({
   q = { "<cmd>q<cr>", "close window"},
   ["<tab>"] = {":wincmd w<cr>", "switch window"},
 })
+wk.register({
+  ["<leader>"] = {
+    ["l"] = {
+      ["c"] = { ":Commentary<cr>", "comment code"},
+    },
+    ["s"] = { ":lua require('spectre').open_visual()<cr>", "search"}
+  },
+  q = { "<cmd>q<cr>", "close window"},
+}, { mode = "v"})
