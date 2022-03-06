@@ -4,8 +4,8 @@ set mouse=a                             " Enable your mouse
 set nowrap                              " Display long lines as just one line
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
-set tabstop=2                           " Insert 2 spaces for a tab
-set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set tabstop=4                           " Insert 2 spaces for a tab
+set shiftwidth=4                        " Change the number of space characters inserted for indentation
 set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
@@ -14,6 +14,9 @@ set number                              " Line numbers
 set cursorline                          " Enable highlighting of the current line
 set termguicolors
 set hidden
+
+set ignorecase smartcase
+
 " 让退出 vim 之后 undo 消息不消失
 set undofile
 " 在滚动屏幕的时候保留 3 行
@@ -36,6 +39,9 @@ tnoremap  <Esc>  <C-\><C-n>
 let g:mapleader = "\<space>"
 " 设置主题
 colorscheme tokyonight
+" colorscheme gruvbox
+
+highlight CocHighlightText guibg=#36648B
 
 augroup CursorLineOnlyInActiveWindow
     autocmd!
